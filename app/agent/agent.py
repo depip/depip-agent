@@ -2,7 +2,7 @@ from depip_agent.app.llm_model.bedrock_llm import BedrockLLM
 from depip_agent.app.embedding_model.bedrock_embedding import BedrockEmbedding
 from langgraph.prebuilt import create_react_agent
 from langchain.tools.retriever import create_retriever_tool
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.checkpoint.memory import MemorySaver
 class Agent:
     def __init__(self, embedding_model: BedrockEmbedding, llm_model: BedrockLLM) -> None:
@@ -15,7 +15,8 @@ class Agent:
             "Searches and returns knowledge from the programmable ip license or story protocol",
         )
 
-        self.agent_executor = create_react_agent(llm_model.llm, tools=[tool], checkpointer=memory)
+        self.agent_executor = create_react_agent(llm_model.llm, tools=[tool], checkpointer=memory,
+                                                 state_modifier=SystemMessage("Your name always is Depip. I provided knowledge for you about story protocol and programmable ip license. Help human answer their questions"))
 
     def invoke(self, query: str, session_id: str):
         config = {
