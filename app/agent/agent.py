@@ -25,7 +25,6 @@ class Agent:
             }
         }
         response = self.agent_executor.invoke({"messages": [HumanMessage(content=query)]}, config)
-        print(response['messages'][-1].content)
         return response['messages'][-1].content
 
 
