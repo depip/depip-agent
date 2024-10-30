@@ -1,0 +1,7 @@
+name: depip_agent
+channels:
+  - defaults
+dependencies:
+  - python
+  - pip:
+    - -r file:requirements.txt
