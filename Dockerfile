@@ -1,4 +1,4 @@
-FROM python:3.13
+FROM python:3.12
 
 WORKDIR /depip_agent
 COPY ./requirements.txt /depip_agent/requirements.txt
