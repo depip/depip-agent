@@ -1,7 +1,7 @@
-name: depip_agent
+name: depip-agent
 channels:
   - defaults
 dependencies:
-  - python
+  - python==3.12.1
   - pip:
     - -r file:requirements.txt

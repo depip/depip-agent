@@ -8,7 +8,8 @@ from depip_agent.app.llm_model.bedrock_llm import BedrockLLM
 from depip_agent.app.dto import invoke_input
 
 embedding_model = BedrockEmbedding()
-embedding_model.createEmbeddingPDF()
+# embedding_model.createEmbeddingPDF()
+embedding_model.loadVectorStore()
 llm_model = BedrockLLM(embedding_model.retriever)
 agent = Agent(embedding_model=embedding_model, llm_model=llm_model)
 

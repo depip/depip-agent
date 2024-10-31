@@ -14,9 +14,9 @@ class Agent:
             "programmable_ip_license",
             "Searches and returns knowledge from the programmable ip license or story protocol",
         )
-
-        self.agent_executor = create_react_agent(llm_model.llm, tools=[tool], checkpointer=memory,
-                                                 state_modifier=SystemMessage("Your name always is Depip. I provided knowledge for you about story protocol and programmable ip license. Help human answer their questions"))
+        instruction = "You are Depip, an friendly agent has knowledge about story protocol and programmable ip license. Help human answer their questions about this context only."
+        self.agent_executor = create_react_agent(llm_model.llm, tools=[tool], 
+                                                 checkpointer=memory, state_modifier=instruction)
 
     def invoke(self, query: str, session_id: str):
         config = {
