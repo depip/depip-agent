@@ -3,6 +3,32 @@
 ## Overview architecture  
 ```mermaid
 ---
+title: Sequence diagram create knowledge
+---
+sequenceDiagram 
+    Admin->>+Agent: Put knowledge (pdf, web crawler)
+    Admin->>+Agent: create vector store
+    Agent->>+Embedding Model: create vector store
+    Embedding Model-->>-Agent: vector store
+    Agent->>-Storage: save vector store
+```
+
+```mermaid
+---
+title: Sequence diagram invoke agent
+---
+sequenceDiagram 
+    User->>+Agent: Invoke agent
+    Agent->>+Embedding Model: get knowledge
+    Embedding Model->>Embedding Model: get knowledge from storage
+    Embedding Model-->>-Agent: knowledge
+    Agent->>Agent: create answer
+    Agent-->>-User: answer
+```
+
+
+```mermaid
+---
 title: Flow diagram depip agent
 ---
 flowchart LR
