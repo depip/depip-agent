@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import FastAPI, File, Form, UploadFile
 from typing import Annotated
 from manga.manga import Manga
@@ -8,6 +6,10 @@ from embedding_model.bedrock_embedding import BedrockEmbedding
 from llm_model.bedrock_llm import BedrockLLM
 from dto import invoke_input, translate_manga
 from fastapi.responses import StreamingResponse
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 embedding_model = BedrockEmbedding()
 # embedding_model.createEmbeddingPDF()
 embedding_model.loadVectorStore()
@@ -16,7 +18,7 @@ agent = Agent(embedding_model=embedding_model, llm_model=llm_model)
 
 manga = Manga()
 
-app = FastAPI()
+app = FastAPI(root_path=os.getenv('FASTAPI_ROOT_PATH'))
 
 @app.post("/invoke")
 def invokeLLM(input: invoke_input.InvokeInputDTO):
