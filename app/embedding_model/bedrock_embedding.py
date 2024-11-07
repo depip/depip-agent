@@ -1,7 +1,7 @@
-import os,time
+import time
 from langchain_aws import BedrockEmbeddings
 from langchain_community.document_loaders import PyMuPDFLoader
-from depip_agent.app.utils.boto3_client import Boto3Client
+from utils.boto3_client import Boto3Client
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.vectorstores import InMemoryVectorStore, VectorStoreRetriever
 from langchain_community.vectorstores import FAISS

@@ -1,5 +1,5 @@
-from depip_agent.app.llm_model.bedrock_llm import BedrockLLM
-from depip_agent.app.embedding_model.bedrock_embedding import BedrockEmbedding
+from llm_model.bedrock_llm import BedrockLLM
+from embedding_model.bedrock_embedding import BedrockEmbedding
 from langgraph.prebuilt import create_react_agent
 from langchain.tools.retriever import create_retriever_tool
 from langchain_core.messages import HumanMessage, SystemMessage

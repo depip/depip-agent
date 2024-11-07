@@ -1,5 +1,5 @@
 from langchain_aws import ChatBedrock
-from depip_agent.app.utils.boto3_client import Boto3Client
+from utils.boto3_client import Boto3Client
 from langchain_core.vectorstores import VectorStoreRetriever
 class BedrockLLM:
     def __init__(self, retriever: VectorStoreRetriever) -> None:
