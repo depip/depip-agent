@@ -1,14 +1,23 @@
 import time
 from langchain_aws import BedrockEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_community.document_loaders import PyMuPDFLoader
 from utils.boto3_client import Boto3Client
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.vectorstores import InMemoryVectorStore, VectorStoreRetriever
 from langchain_community.vectorstores import FAISS
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 class BedrockEmbedding:
     def __init__(self) -> None:
         boto3Client = Boto3Client()
         self.embedding_model = BedrockEmbeddings(client = boto3Client.client, model_id='cohere.embed-english-v3')
+        # self.embedding_model = VertexAIEmbeddings(model_name='text-multilingual-embedding-002')
+        # self.embedding_model = GoogleGenerativeAIEmbeddings(google_api_key=os.getenv('GOOGLE_API_KEY'), model='models/text-embedding-004')
+        
 
     def createEmbeddingPDF(self):
         print('create embedding PDF')
