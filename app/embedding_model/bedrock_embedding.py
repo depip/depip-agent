@@ -13,9 +13,9 @@ load_dotenv()
 
 class BedrockEmbedding:
     def __init__(self) -> None:
-        boto3Client = Boto3Client()
-        self.embedding_model = BedrockEmbeddings(client = boto3Client.client, model_id='cohere.embed-english-v3')
-        # self.embedding_model = VertexAIEmbeddings(model_name='text-multilingual-embedding-002')
+        # boto3Client = Boto3Client()
+        # self.embedding_model = BedrockEmbeddings(client = boto3Client.client, model_id='cohere.embed-english-v3')
+        self.embedding_model = VertexAIEmbeddings(model_name='text-embedding-004')
         # self.embedding_model = GoogleGenerativeAIEmbeddings(google_api_key=os.getenv('GOOGLE_API_KEY'), model='models/text-embedding-004')
         
 
@@ -37,7 +37,7 @@ class BedrockEmbedding:
     def loadVectorStore(self):
         print('load vector store')
         start_time = time.time()
-        faiss_index_path = "app/knowledge/faiss_index"
+        faiss_index_path = "app/knowledge/faiss_index_gg"
         loaded_vectorstore = FAISS.load_local(folder_path=faiss_index_path, embeddings=self.embedding_model, allow_dangerous_deserialization=True)
         self.retriever = loaded_vectorstore.as_retriever()
         print("--- %s seconds to load vector store ---" % (time.time() - start_time))
